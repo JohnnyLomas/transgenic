@@ -25,7 +25,7 @@ class HyenaTransgenicConfig(PretrainedConfig):
 		vocab_size=272,
 		max_encoder_position_embeddings=16384,
 		max_decoder_position_embeddings=2048,
-		encoder_layers=6,
+		encoder_layers=12,
 		encoder_ffn_dim=3072,
 		encoder_attention_heads=6,
 		decoder_layers=12,

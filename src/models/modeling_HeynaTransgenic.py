@@ -285,9 +285,6 @@ class HyenaDownsampleWithRelPosBias(nn.Module):
 class HyenaEncoder(nn.Module):
 	def __init__(self, config):
 		super().__init__()
-		self.do_segment = config.do_segment
-		self.segmentation_model = config.s_model
-		self.numSegClasses = config.numSegClasses
 
 		HyenaConfig = AutoConfig.from_pretrained(config.encoder_model, trust_remote_code=True)
 		HyenaConfig.max_seq_len = config.max_encoder_seqlen

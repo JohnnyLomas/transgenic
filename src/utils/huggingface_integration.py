@@ -176,8 +176,29 @@ def registerModel(hub_name, model):
 	tokenizer.push_to_hub(hub_name)
 
 if __name__ == "__main__":
-	generation_checkpoint = "checkpoints/Hyena_Gen9G_6144nt_768L12_E22.safetensors"
-	config = HyenaTransgenicConfig()
+	
+	hf_name = "jlomas/HyenaTransgenic-512L9A4-160M" 
+	generation_checkpoint = "checkpoints/Hyena_Gen9G_6144nt_wide_E12.safetensors"
+	layers = 9
+	attentionWindow = [
+			1024,1024,1024,1024,1024,1024,
+			1024,1024,1024
+		]
+
+	config = HyenaTransgenicConfig(
+	d_model=512,
+	encoder_layers=layers,
+	decoder_layers=layers,
+	encoder_n_layer=layers,
+	attention_window = attentionWindow,
+	dropout=0.1,
+	encoder_attention_heads=4,
+	decoder_attention_heads=4
+	)
+
+	#generation_checkpoint = "checkpoints/Hyena_Gen9G_6144nt_768L12_E22.safetensors"
+	#config = HyenaTransgenicConfig()
+	#hf_name = "jlomas/HyenaTransgenic-768L12A6-400M" 
 	model = transgenicForConditionalGeneration(config)
 
 	generation_tensors = {}
@@ -196,4 +217,4 @@ if __name__ == "__main__":
 
 	model.load_state_dict(generation_tensors | freq_tensors, strict=True)
 
-	registerModel("jlomas/HyenaTransgenic-768L12A6-400M", model)
+	registerModel(hf_name, model)
