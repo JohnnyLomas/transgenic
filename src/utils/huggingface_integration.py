@@ -176,28 +176,8 @@ def registerModel(hub_name, model):
 	tokenizer.push_to_hub(hub_name)
 
 if __name__ == "__main__":
-	from huggingface_hub import login
-	login(token="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")
 	generation_checkpoint = "checkpoints/Hyena_Gen9G_6144nt_768L12_E22.safetensors"
-	layers = 12
-	attentionWindow = [
-			1024,1024,1024,1024,1024,1024,
-			1024,1024,1024,1024,1024,1024,
-			#1024,1024,1024,1024,1024,1024
-		]
-
-	config = HyenaTransgenicConfig(
-	do_segment=False, 
-	numSegClasses=9,
-	d_model=768,
-	encoder_layers=layers,
-	decoder_layers=layers,
-	encoder_n_layer=layers,
-	attention_window = attentionWindow,
-	dropout=0,
-	encoder_attention_heads=6,
-	decoder_attention_heads=6
-	)
+	config = HyenaTransgenicConfig()
 	model = transgenicForConditionalGeneration(config)
 
 	generation_tensors = {}
