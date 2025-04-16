@@ -3,9 +3,9 @@ from safetensors import safe_open
 from peft import IA3Config, get_peft_model
 
 sys.path.insert(0, f'{os.getcwd()}/src')
-from models.modeling_HeynaTransgenic import transgenicForConditionalGeneration, transgenicModel
-from models.configuration_transgenic import HyenaTransgenicConfig
-from models.tokenization_transgenic import GFFTokenizer
+from model.modeling_HeynaTransgenic import transgenicForConditionalGeneration, transgenicModel
+from model.configuration_transgenic import HyenaTransgenicConfig
+from model.tokenization_transgenic import GFFTokenizer
 
 def getModel(config, safetensors_model=None, device="cpu", mode="predict"):
 	if not config:
